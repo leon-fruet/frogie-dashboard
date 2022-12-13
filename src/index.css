@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  background-color: #36393E;
+  color: #fff;
+  font-family: "DM Sans";
+  height: 100%;
+}
+
+html, #root{
+  height: 100%;
+}

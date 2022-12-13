@@ -1,0 +1,1 @@
+export const CommandPrefixPage = () => <div>CommandPrefixPage</div>
