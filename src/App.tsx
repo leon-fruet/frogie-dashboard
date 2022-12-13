@@ -6,6 +6,7 @@ import {MenuPage} from "./pages/MenuPage";
 import {CommandPrefixPage} from "./pages/CommandPrefixPage";
 import {WelcomeMessagePage} from "./pages/WelcomeMessagePage";
 import {GuildContext} from "./utils/contexts/GuildContext";
+import {AppBar} from "./components/AppBar";
 
 function App() {
     const [guildId, setGuildId] = useState('');
@@ -14,12 +15,15 @@ function App() {
   return (
       <GuildContext.Provider value={{guildId, updateGuildId}}>
           <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/menu" element={<MenuPage />} />
-              {/*<Route path="/dashboard" element={<DashboardPage />} />*/}
-              <Route path="/categories" element={<CategoryPage />} />
-              <Route path="/guild/command-prefix" element={<CommandPrefixPage />} />
-              <Route path="/guild/welcome-message" element={<WelcomeMessagePage />} />
+              <Route path="/dashboard/*" element={<AppBar/>}/>
+          </Routes>
+          <Routes>
+              <Route path="/" element={<HomePage />}/>
+              <Route path="/menu" element={<MenuPage />}/>
+              {/*<Route path="/dashboard" element={<DashboardPage />}/>*/}
+              <Route path="/dashboard/categories" element={<CategoryPage />}/>
+              <Route path="/dashboard/prefix" element={<CommandPrefixPage />}/>
+              <Route path="/dashboard/welcome-message" element={<WelcomeMessagePage />}/>
           </Routes>
       </GuildContext.Provider>
   );
