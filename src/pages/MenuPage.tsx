@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {useContext} from "react";
 import {GuildContext} from "../utils/contexts/GuildContext";
 import {GuildMenuItem} from "../components/GuildMenuItem";
-import {Container} from "../utils/styles";
+import {Container, Page} from "../utils/styles";
 
 export const MenuPage = () => {
     const navigate = useNavigate();
@@ -14,7 +14,7 @@ export const MenuPage = () => {
         navigate('/dashboard/categories')
     }
     return (
-        <div style={{padding: '50px 0'}}>
+        <Page>
             <Container>
                 <h2 style={{fontWeight: 300}}>Select a Server</h2>
                 <div>
@@ -24,6 +24,6 @@ export const MenuPage = () => {
                     ))}
                 </div>
             </Container>
-        </div>
+        </Page>
     );
 }
