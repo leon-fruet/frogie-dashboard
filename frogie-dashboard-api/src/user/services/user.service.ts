@@ -12,12 +12,10 @@ export class UserService implements IUserService {
     private readonly userRepository: Repository<User>,
   ) {}
   createUser(details: UserDetails) {
-    console.log('Create User');
     const newUser = this.userRepository.create(details);
     return this.userRepository.save(newUser);
   }
   findUser(discordId: string) {
-    console.log('Find User');
     return this.userRepository.findOne({ where: { discordId: discordId } });
   }
 }

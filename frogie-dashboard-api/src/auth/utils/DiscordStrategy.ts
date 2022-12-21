@@ -17,8 +17,7 @@ export class DiscordStrategy extends PassportStrategy(Strategy) {
     });
   }
   async validate(accessToken: string, refreshToken: string, profile: Profile) {
-    console.log('DiscordStrategy Validate Method');
-    console.log(profile.username);
+    console.log('User logged in', [profile.username, profile.id]);
     return this.authService.validateUser({ discordId: profile.id });
   }
 }
