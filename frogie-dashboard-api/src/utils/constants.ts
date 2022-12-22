@@ -1,3 +1,4 @@
 export enum ROUTES {
-  AUTH = 'AUTH',
+  AUTH = 'auth',
+  DISCORD = 'discord',
 }
