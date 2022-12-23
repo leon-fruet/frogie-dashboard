@@ -11,6 +11,7 @@ export class DiscordHttpService {
   constructor(private readonly httpService: HttpService) {}
 
   async fetchBotGuilds(): Promise<DiscordGuild[]> {
+    console.log('[INFO] DiscordBot-Endpoint /users/@me/guilds got called.');
     const botToken = process.env.DISCORD_BOT_TOKEN;
     const { data } = await firstValueFrom(
       this.httpService
@@ -30,6 +31,7 @@ export class DiscordHttpService {
     return data;
   }
   async fetchUserGuilds(accessToken: string): Promise<DiscordGuild[]> {
+    console.log('[INFO] Discord-Endpoint /users/@me/guilds got called.');
     const { data } = await firstValueFrom(
       this.httpService
         .get<DiscordGuild[]>('https://discord.com/api/v9/users/@me/guilds', {
@@ -49,6 +51,7 @@ export class DiscordHttpService {
   }
 
   async getUserInfo(accessToken: string): Promise<DiscordUser> {
+    console.log('[INFO] Discord-Endpoint /users/@me got called.');
     const { data } = await firstValueFrom(
       this.httpService
         .get<DiscordUser>('https://discord.com/api/v9/users/@me', {

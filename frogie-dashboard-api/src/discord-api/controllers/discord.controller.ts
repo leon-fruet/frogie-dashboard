@@ -18,11 +18,13 @@ export class DiscordController {
   getMutualGuilds(
     @AuthUser() user: User,
   ): Promise<[DiscordGuild[], DiscordGuild[]]> {
+    console.log('[INFO] Endpoint /api/discord/guilds got called.');
     return this.discordService.getMutualGuilds(user.accessToken);
   }
 
   @Get('user')
   getCurrentUserData(@AuthUser() user: User): Promise<DiscordUser> {
+    console.log('[INFO] Endpoint /api/discord/user got called.');
     return this.discordService.getUserInfos(user.accessToken);
   }
 }
