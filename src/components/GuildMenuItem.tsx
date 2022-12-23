@@ -1,13 +1,12 @@
 import { GuildMenuItemStyle } from "../utils/styles";
-import { DiscordGuild } from "../utils/types/DiscordGuild.type";
+import { PartialGuild } from "../utils/types/PartialGuild.type";
+import { getGuildIconUrl } from "../utils/helpers/DiscordCDN";
 
-export const GuildMenuItem = (data: { guild: DiscordGuild }) => {
-  const guildIconUrl = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png`;
-
+export const GuildMenuItem = (data: { guild: PartialGuild }) => {
   return (
     <GuildMenuItemStyle>
       <img
-        src={guildIconUrl}
+        src={getGuildIconUrl(data.guild.id, data.guild.icon)}
         alt={data.guild.name}
         width={40}
         height={40}

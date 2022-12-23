@@ -1,17 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { DiscordGuild } from "../types/DiscordGuild.type";
 import axios from "axios";
+import { PartialGuild } from "../types/PartialGuild.type";
 
 const useFetchMutualGuilds = () => {
-  const [guilds, setGuilds] = useState<[DiscordGuild[], DiscordGuild[]]>();
+  const [guilds, setGuilds] = useState<[PartialGuild[], PartialGuild[]]>();
   const [error, setError] = useState();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setIsLoading(true);
     axios
-      .get<[DiscordGuild[], DiscordGuild[]]>(
+      .get<[PartialGuild[], PartialGuild[]]>(
         "http://localhost:3001/api/discord/guilds",
         {
           withCredentials: true,

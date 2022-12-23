@@ -1,4 +1,3 @@
-import { mockGuilds } from "../__mocks__/guild";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { GuildContext } from "../utils/contexts/GuildContext";
@@ -7,13 +6,14 @@ import { Container, Flex, GuildMenuItemStyle, Page } from "../utils/styles";
 import useFetchMutualGuilds from "../utils/hooks/useFetchMutualGuilds";
 import { MoonLoader } from "react-spinners";
 import { CustomButton } from "../utils/styles/index";
+import { PartialGuild } from "../utils/types/PartialGuild.type";
 
 export const MenuPage = () => {
   const navigate = useNavigate();
-  const { updateGuildId } = useContext(GuildContext);
+  const { updateGuild } = useContext(GuildContext);
 
-  const handleClick = (guildId: string) => {
-    updateGuildId(guildId);
+  const handleClick = (guild: PartialGuild) => {
+    updateGuild(guild);
     navigate("/dashboard/categories");
   };
 
@@ -42,7 +42,7 @@ export const MenuPage = () => {
             </GuildMenuItemStyle>
           ) : (
             guilds?.[0].map((guild) => (
-              <div onClick={() => handleClick(guild.id)}>
+              <div onClick={() => handleClick(guild)}>
                 <GuildMenuItem guild={guild} />
               </div>
             ))

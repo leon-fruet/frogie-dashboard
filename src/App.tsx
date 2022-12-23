@@ -10,14 +10,15 @@ import { AppBar } from "./components/AppBar";
 import { useFetchUser } from "./utils/hooks/useFetchUser";
 import { MoonLoader } from "react-spinners";
 import { Flex } from "./utils/styles/index";
+import { PartialGuild } from "./utils/types/PartialGuild.type";
 
 function App() {
-  const [guildId, setGuildId] = useState("");
+  const [guild, setGuild] = useState<PartialGuild>({} as PartialGuild);
   const { user, error, isLoading } = useFetchUser();
-  const updateGuildId = (id: string) => setGuildId(id);
+  const updateGuild = (guild: PartialGuild) => setGuild(guild);
 
   return (
-    <GuildContext.Provider value={{ guildId, updateGuildId }}>
+    <GuildContext.Provider value={{ guild, updateGuild }}>
       {isLoading ? (
         <Flex justifyContent="center" alignItems="center">
           <MoonLoader size={40} color="white" />
