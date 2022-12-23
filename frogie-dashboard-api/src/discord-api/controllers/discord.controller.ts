@@ -15,9 +15,10 @@ export class DiscordController {
   ) {}
 
   @Get('guilds')
-  getMutualGuilds(
-    @AuthUser() user: User,
-  ): Promise<[PartialGuild[], PartialGuild[]]> {
+  getMutualGuilds(@AuthUser() user: User): Promise<{
+    mutualGuilds: PartialGuild[];
+    recommendedGuilds: PartialGuild[];
+  }> {
     console.log('[INFO] Endpoint /api/discord/guilds got called.');
     return this.discordService.getMutualGuilds(user.accessToken);
   }

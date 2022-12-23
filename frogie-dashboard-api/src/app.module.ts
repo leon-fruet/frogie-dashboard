@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { PassportModule } from '@nestjs/passport';
 import { DiscordApiModule } from './discord-api/discord-api.module';
+import { GuildsModule } from './guilds/guilds.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { DiscordApiModule } from './discord-api/discord-api.module';
     AuthModule,
     UserModule,
     DiscordApiModule,
+    GuildsModule,
   ],
   controllers: [],
   providers: [],
