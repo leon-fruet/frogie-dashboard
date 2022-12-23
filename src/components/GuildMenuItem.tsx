@@ -1,13 +1,19 @@
-import {GuildMenuItemStyle} from "../utils/styles";
+import { GuildMenuItemStyle } from "../utils/styles";
+import { DiscordGuild } from "../utils/types/DiscordGuild.type";
 
-type Props = {
-    guild: {
-        id: string;
-        name: string;
-        icon: string;
-    }
-}
-export const GuildMenuItem = ({guild}: Props) => <GuildMenuItemStyle>
-    <img src={guild.icon} alt={guild.name} width={40} height={40} style={{borderRadius: '50%'}}/>
-    <p>{guild.name}</p>
-</GuildMenuItemStyle>
+export const GuildMenuItem = (data: { guild: DiscordGuild }) => {
+  const guildIconUrl = `https://cdn.discordapp.com/icons/${data.guild.id}/${data.guild.icon}.png`;
+
+  return (
+    <GuildMenuItemStyle>
+      <img
+        src={guildIconUrl}
+        alt={data.guild.name}
+        width={40}
+        height={40}
+        style={{ borderRadius: "50%" }}
+      />
+      <p>{data.guild.name}</p>
+    </GuildMenuItemStyle>
+  );
+};
