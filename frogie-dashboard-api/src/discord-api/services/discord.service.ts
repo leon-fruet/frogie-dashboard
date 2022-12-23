@@ -24,15 +24,15 @@ export class DiscordService {
       (guild) =>
         // TODO: take care of permissions type v1!
         botBuilds.some((botGuild) => botGuild.id == guild.id) &&
-        ((+guild.permissions | 0x8) == 0x8 ||
-          (+guild.permissions | 0x20) == 0x20 ||
+        ((+guild.permissions & 0x8) == 0x8 ||
+          (+guild.permissions & 0x20) == 0x20 ||
           guild.owner),
     );
     const recommendedGuilds = userGuilds.filter(
       (guild) =>
         // TODO: take care of permissions type v1!
         !botBuilds.some((botGuild) => botGuild.id == guild.id) &&
-        ((+guild.permissions | 0x20) == 0x20 || guild.owner),
+        ((+guild.permissions & 0x20) == 0x20 || guild.owner),
     );
     return [mutualGuild, recommendedGuilds];
   }
