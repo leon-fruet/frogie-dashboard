@@ -1,8 +1,7 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { DiscordHttpService } from './discord-http.service';
-import { DiscordGuild } from '../../../dist/utils/types/DiscordGuild';
-import { User } from '../../utils/typeorm/entities/User';
 import { DiscordUser } from 'src/utils/types/DiscordUser.type';
+import { PartialGuild } from 'src/utils/types/PartialGuild.type';
 
 @Injectable()
 export class DiscordService {
@@ -10,15 +9,15 @@ export class DiscordService {
     @Inject(DiscordHttpService)
     private readonly discordHttpService: DiscordHttpService,
   ) {}
-  getBotGuilds(): Promise<DiscordGuild[]> {
+  getBotGuilds(): Promise<PartialGuild[]> {
     return this.discordHttpService.fetchBotGuilds();
   }
-  getUserGuilds(accessToken: string): Promise<DiscordGuild[]> {
+  getUserGuilds(accessToken: string): Promise<PartialGuild[]> {
     return this.discordHttpService.fetchUserGuilds(accessToken);
   }
   async getMutualGuilds(
     accessToken: string,
-  ): Promise<[DiscordGuild[], DiscordGuild[]]> {
+  ): Promise<[PartialGuild[], PartialGuild[]]> {
     const botBuilds = await this.getBotGuilds();
     const userGuilds = await this.getUserGuilds(accessToken);
     const mutualGuild = userGuilds.filter(

@@ -4,8 +4,8 @@ import { DiscordService } from '../services/discord.service';
 import { AuthUser } from 'src/utils/decorators';
 import { User } from '../../utils/typeorm/entities/User';
 import { AuthenticatedGuard } from '../../auth/utils/Guards';
-import { DiscordGuild } from '../../../dist/utils/types/DiscordGuild';
 import { DiscordUser } from 'src/utils/types/DiscordUser.type';
+import { PartialGuild } from 'src/utils/types/PartialGuild.type';
 
 @Controller(ROUTES.DISCORD)
 @UseGuards(AuthenticatedGuard)
@@ -17,7 +17,7 @@ export class DiscordController {
   @Get('guilds')
   getMutualGuilds(
     @AuthUser() user: User,
-  ): Promise<[DiscordGuild[], DiscordGuild[]]> {
+  ): Promise<[PartialGuild[], PartialGuild[]]> {
     console.log('[INFO] Endpoint /api/discord/guilds got called.');
     return this.discordService.getMutualGuilds(user.accessToken);
   }
