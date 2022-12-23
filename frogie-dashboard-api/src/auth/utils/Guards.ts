@@ -10,3 +10,11 @@ export class DiscordAuthGuard extends AuthGuard('discord') {
     return activate;
   }
 }
+
+@Injectable()
+export class AuthenticatedGuard {
+  async canActivate(context: ExecutionContext) {
+    const req = context.switchToHttp().getRequest();
+    return req.isAuthenticated();
+  }
+}
