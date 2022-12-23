@@ -15,7 +15,9 @@ export class DiscordController {
   ) {}
 
   @Get('guilds')
-  getMutualGuilds(@AuthUser() user: User): Promise<DiscordGuild[]> {
+  getMutualGuilds(
+    @AuthUser() user: User,
+  ): Promise<[DiscordGuild[], DiscordGuild[]]> {
     return this.discordService.getMutualGuilds(user.accessToken);
   }
 

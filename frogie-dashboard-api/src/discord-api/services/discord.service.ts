@@ -16,16 +16,26 @@ export class DiscordService {
   getUserGuilds(accessToken: string): Promise<DiscordGuild[]> {
     return this.discordHttpService.fetchUserGuilds(accessToken);
   }
-  async getMutualGuilds(accessToken: string): Promise<DiscordGuild[]> {
+  async getMutualGuilds(
+    accessToken: string,
+  ): Promise<[DiscordGuild[], DiscordGuild[]]> {
     const botBuilds = await this.getBotGuilds();
     const userGuilds = await this.getUserGuilds(accessToken);
-    return userGuilds.filter(
+    const mutualGuild = userGuilds.filter(
       (guild) =>
         // TODO: take care of permissions type v1!
         botBuilds.some((botGuild) => botGuild.id == guild.id) &&
         ((+guild.permissions | 0x8) == 0x8 ||
-          (+guild.permissions | 0x20) == 0x20),
+          (+guild.permissions | 0x20) == 0x20 ||
+          guild.owner),
     );
+    const recommendedGuilds = userGuilds.filter(
+      (guild) =>
+        // TODO: take care of permissions type v1!
+        !botBuilds.some((botGuild) => botGuild.id == guild.id) &&
+        ((+guild.permissions | 0x20) == 0x20 || guild.owner),
+    );
+    return [mutualGuild, recommendedGuilds];
   }
 
   async getUserInfos(accessToken: string): Promise<DiscordUser> {
