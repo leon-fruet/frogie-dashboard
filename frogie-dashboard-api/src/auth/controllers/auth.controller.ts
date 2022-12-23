@@ -9,20 +9,26 @@ import { User } from '../../utils/typeorm/entities/User';
 export class AuthController {
   @Get('login')
   @UseGuards(DiscordAuthGuard)
-  login() {}
+  login() {
+    console.log('[INFO] Endpoint /api/auth/login got called.');
+  }
 
   @Get('redirect')
   @UseGuards(DiscordAuthGuard)
   redirect(@Res() res: Response) {
-    res.redirect('http://localhost:3000/dashboard');
+    console.log('[INFO] Endpoint /api/auth/redirect got called.');
+    res.redirect('http://localhost:3000/menu');
   }
 
   @Get('status')
   @UseGuards(AuthenticatedGuard)
   status(@AuthUser() user: User) {
+    console.log('[INFO] Endpoint /api/auth/status got called.');
     return user;
   }
 
   @Post('logout')
-  logout() {}
+  logout() {
+    console.log('[INFO] Endpoint /api/auth/logout got called.');
+  }
 }

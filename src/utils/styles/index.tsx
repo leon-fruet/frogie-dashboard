@@ -1,11 +1,11 @@
-import styled, {css} from "styled-components";
+import styled, { css } from "styled-components";
 
 export const MainButton = styled.div`
   display: flex;
   width: 350px;
   align-items: center;
   justify-content: space-between;
-  background-color: #282B30;
+  background-color: #282b30;
   padding: 4px 50px;
   box-sizing: border-box;
   border-radius: 5px;
@@ -33,9 +33,26 @@ export const GuildMenuItemStyle = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 8px 20px;
-  background-color: #282B30;
+  background-color: #282b30;
   border-radius: 5px;
   margin: 8px 0;
+`;
+
+export const CustomButton = styled.button`
+  display: inline-block;
+  padding: 0.7em 1.4em;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.15em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: #3369ff;
+  box-shadow: inset 0 -0.6em 0 -0.35em rgba(0, 0, 0, 0.17);
+  text-align: center;
+  position: relative;
 `;
 
 export const Container = styled.div`
@@ -49,7 +66,7 @@ export const AppBarStyle = styled.header`
   align-items: center;
   padding: 15px 35px;
   box-sizing: border-box;
-  background-color: #282B30;
+  background-color: #282b30;
 `;
 
 export const Title = styled.p`
@@ -57,15 +74,17 @@ export const Title = styled.p`
 `;
 
 type FlexProps = Partial<{
-    alignItems: string;
-    justifyContent: string;
-    flexDirection: string;
+  alignItems: string;
+  justifyContent: string;
+  flexDirection: string;
+  gap: string;
 }>;
 export const Flex = styled.div<FlexProps>`
   display: flex;
-  align-items: ${({alignItems}) => alignItems};
-  justify-content: ${({justifyContent}) => justifyContent};
-  flex-direction: ${({flexDirection}) => flexDirection};
+  align-items: ${({ alignItems }) => alignItems};
+  justify-content: ${({ justifyContent }) => justifyContent};
+  flex-direction: ${({ flexDirection }) => flexDirection};
+  gap: ${({ gap }) => gap};
 `;
 
 export const Grid = styled.div`
@@ -79,10 +98,10 @@ export const InputField = styled.input`
   box-sizing: border-box;
   font-size: 16px;
   color: #fff;
-  font-family: 'DM Sans';
-  background-color: #282B30;
+  font-family: "DM Sans";
+  background-color: #282b30;
   border-radius: 5px;
-  border: 1px solid #1E2124;
+  border: 1px solid #1e2124;
   outline: none;
   width: 100%;
   :focus {
@@ -95,10 +114,10 @@ export const TextArea = styled.textarea`
   box-sizing: border-box;
   font-size: 16px;
   color: #fff;
-  font-family: 'DM Sans';
-  background-color: #282B30;
+  font-family: "DM Sans";
+  background-color: #282b30;
   border-radius: 5px;
-  border: 1px solid #1E2124;
+  border: 1px solid #1e2124;
   outline: none;
   width: 100%;
   resize: none;
@@ -108,7 +127,7 @@ export const TextArea = styled.textarea`
 `;
 
 type ButtonProps = {
-    variant: 'primary' | 'secondary';
+  variant: "primary" | "secondary";
 };
 export const Button = styled.button<ButtonProps>`
   padding: 10px 24px;
@@ -117,32 +136,35 @@ export const Button = styled.button<ButtonProps>`
   border: none;
   font-size: 16px;
   color: #fff;
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   cursor: pointer;
-  ${({variant}) => variant === 'primary' && css`
-    background-color: #7289DA;
-  `}
-  ${({variant}) => variant === 'secondary' && css`
-    background-color: #424549;
-  `}
+  ${({ variant }) =>
+    variant === "primary" &&
+    css`
+      background-color: #7289da;
+    `}
+  ${({ variant }) =>
+    variant === "secondary" &&
+    css`
+      background-color: #424549;
+    `}
 `;
 
 export const Page = styled.div`
-    padding: 50px;
+  padding: 50px;
 `;
 
 export const Select = styled.select`
   width: 100%;
   padding: 10px;
-  font-family: 'DM Sans';
+  font-family: "DM Sans";
   font-size: 18px;
   background-color: inherit;
   padding: 12px 16px;
   color: #fff;
-  border: 1px solid #1E2124;
+  border: 1px solid #1e2124;
   border-radius: 5px;
-  & > option{
-    background-color: #36393E;
-    
+  & > option {
+    background-color: #36393e;
   }
 `;
